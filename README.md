@@ -12,22 +12,22 @@ of your repository.  For example, if you wanted to install Flask, you would add
 this:
 
 ```yaml
-name: myproject  # overridden at install, so this is for your use with conda env
+name: myproject  # NB - overridden by this buildpack installation
 dependencies:
-  - flask
+  - pandas
 ```
 
 Once that's created, you need to create a new Heroku app using this buildpack
 like this:
 
 ```console
-$ heroku create --buildpack https://github.com/conda/conda-buildpack.git
+$ heroku create --buildpack https://github.com/singletracksystems/conda-buildpack
 ```
 
 You can also add it to upcoming builds of an existing application:
 
 ```console
-$ heroku config:add BUILDPACK_URL=https://github.com/conda/conda-buildpack.git
+$ heroku config:add BUILDPACK_URL=https://github.com/singletracksystems/conda-buildpack
 ```
 
 You can test that this is running conda managed Python like this:
