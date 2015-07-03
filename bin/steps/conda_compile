@@ -1,27 +1,34 @@
 #!/usr/bin/env bash
-CONDA_VERSION=3.8.3
-if [ ! -d /app/.heroku/miniconda ]; then
-    puts-step "Preparing Python/Miniconda Environment (${CONDA_VERSION})"
-    curl -Os http://repo.continuum.io/miniconda/Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
-    bash Miniconda-${CONDA_VERSION}-Linux-x86_64.sh -p /app/.heroku/miniconda/ -b | indent
-    rm -fr Miniconda-${CONDA_VERSION}-Linux-x86_64.sh
 
-    conda update conda --quiet --yes | indent
+CONDA_INSTALL_URL="http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+CONDA_INSTALL_SCRIPT="miniconda_linux-x86_64.sh"
+CONDA_HOME="/tmp/.heroku/miniconda"
+CONDA_BIN_DIR="${CONDA_HOME}/bin"
+CONDA="${CONDA_BIN_DIR}/conda"
+
+ENV_NAME="heroku-env"
+ENV_SPEC_FILE="environment.yml"
+
+if [ ! -d ${CONDA_HOME} ]; then
+    puts-step "downloading miniconda"
+    wget ${CONDA_INSTALL_URL} -O ${CONDA_INSTALL_SCRIPT}
+
+    puts-step "installing miniconda"
+    bash ${CONDA_INSTALL_SCRIPT} -p ${CONDA_HOME} -b | indent
+    rm -f ${CONDA_INSTALL_SCRIPT}
+
+    puts-step "updating miniconda to latest version"
+    ${CONDA} update conda --yes | indent
+
+    puts-step $(${CONDA} --version)" installed"
 fi
 
 
-if [ -f conda-requirements.txt ]; then
-    puts-step "Installing dependencies using Conda"
-    conda install --file conda-requirements.txt --yes
+if [ -f ${ENV_SPEC_FILE} ]; then
+    puts-step "creating the ${ENV_NAME} environment"
+    ${CONDA} env remove --yes --quiet --name=${ENV_NAME}
+    ${CONDA} env create --name=${ENV_NAME} --file=${ENV_SPEC_FILE}
 fi
 
-if [ -f environment.yml ]; then
-    puts-step "Creating conda environment"
-    # TODO: Use update if its already there
-    conda env remove --yes --quiet --name heroku-env
-    conda env create --name=heroku-env --file environment.yml
-fi
-
-# Clean up the installation environment .
-# TODO Determine if removing packages might be bad here
-conda clean -pt --yes > /dev/null
+puts-step "cleaning up miniconda environment"
+${CONDA} clean --tarballs --packages --yes > /dev/null
