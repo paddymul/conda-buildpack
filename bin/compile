@@ -2,7 +2,7 @@
 
 # Usage:
 #
-#     $ bin/compile <build-dir> <cache-dir>
+#     $ bin/compile <build-dir> <cache-dir> <env-path>
 
 
 # Fail fast and fail hard.
@@ -16,6 +16,7 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
 echo $BIN_DIR
 echo $BUILD_DIR
 echo $CACHE_DIR
@@ -114,7 +115,6 @@ done
 # ### Fin.
 echo "Copying $BUILD_DIR to $ORIG_BUILD_DIR"
 deep-mv $BUILD_DIR $ORIG_BUILD_DIR
-ls -alh /app/.heroku
 echo "Copying $TMP_APP_DIR to $APP_DIR"
-ls -alh /app/.heroku
 deep-mv $TMP_APP_DIR $APP_DIR
+ls -alh /app/.heroku
