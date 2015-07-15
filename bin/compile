@@ -114,5 +114,7 @@ done
 # ### Fin.
 echo "Copying $BUILD_DIR to $ORIG_BUILD_DIR"
 deep-mv $BUILD_DIR $ORIG_BUILD_DIR
+ls -alh /app/.heroku
 echo "Copying $TMP_APP_DIR to $APP_DIR"
+ls -alh /app/.heroku
 deep-mv $TMP_APP_DIR $APP_DIR
