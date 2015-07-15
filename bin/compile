@@ -100,8 +100,12 @@ set-env PYTHONUNBUFFERED true
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 
+# Activate the environment
+echo "source activate heroku-env" >> $PROFILE_PATH
+
 # Django collectstatic support.
 source $BIN_DIR/steps/collectstatic
+
 
 # Install sane-default script for WEB_CONCURRENCY environment variable.
 cp $ROOT_DIR/vendor/python.webconcurrency.sh $WEBCONCURRENCY_PROFILE_PATH
@@ -110,7 +114,5 @@ cp $ROOT_DIR/vendor/python.webconcurrency.sh $WEBCONCURRENCY_PROFILE_PATH
 source $BIN_DIR/steps/hooks/post_compile
 
 # ### Fin.
-ls -alh $ORIG_BUILD_DIR
 deep-mv $BUILD_DIR $ORIG_BUILD_DIR
-ls -alh $BUILD_DIR
 deep-mv $TMP_APP_DIR $APP_DIR
