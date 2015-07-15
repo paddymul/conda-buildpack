@@ -17,6 +17,8 @@ ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+WEBCONCURRENCY_PROFILE_PATH="$BUILD_DIR/.profile.d/python.webconcurrency.sh"
+
 CACHED_DIRS=".heroku"
 
 # Static configurations for virtualenv caches.
@@ -97,6 +99,11 @@ set-env PYTHONUNBUFFERED true
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 
+# Django collectstatic support.
+source $BIN_DIR/steps/collectstatic
+
+# Install sane-default script for WEB_CONCURRENCY environment variable.
+cp $ROOT_DIR/vendor/python.webconcurrency.sh $WEBCONCURRENCY_PROFILE_PATH
 
 # Experimental post_compile hook.
 source $BIN_DIR/steps/hooks/post_compile
