@@ -2,7 +2,7 @@
 
 CONDA_INSTALL_URL="http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh"
 CONDA_INSTALL_SCRIPT="miniconda_linux-x86_64.sh"
-CONDA_HOME="/tmp/.heroku/miniconda"
+CONDA_HOME="/app/.heroku/miniconda"
 CONDA_BIN_DIR="${CONDA_HOME}/bin"
 CONDA="${CONDA_BIN_DIR}/conda"
 
@@ -30,5 +30,5 @@ if [ -f ${ENV_SPEC_FILE} ]; then
     ${CONDA} env create --name=${ENV_NAME} --file=${ENV_SPEC_FILE}
 fi
 
-puts-step "cleaning up miniconda environment"
-${CONDA} clean --tarballs --packages --yes > /dev/null
+#puts-step "cleaning up miniconda environment"
+#${CONDA} clean --tarballs --packages --yes > /dev/null
