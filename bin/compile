@@ -102,6 +102,7 @@ set-default-env PYTHONHASHSEED random
 source $BIN_DIR/steps/hooks/post_compile
 
 # ### Fin.
-
+ls -alh $ORIG_BUILD_DIR
 deep-mv $BUILD_DIR $ORIG_BUILD_DIR
+ls -alh $BUILD_DIR
 deep-mv $TMP_APP_DIR $APP_DIR
