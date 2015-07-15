@@ -27,7 +27,7 @@ fi
 if [ -f ${ENV_SPEC_FILE} ]; then
     if ${CONDA} env list | grep ${ENV_NAME}; then
         puts-step "updating the ${ENV_NAME} environment"
-        ${CONDA} env update --name=${ENV_NAME} --file ${ENV_SPEC_FILE} || exit 0
+        ${CONDA} env update --name=${ENV_NAME} --file ${ENV_SPEC_FILE} || true
         puts-step "updated the ${ENV_NAME} environment"
     else
         puts-step "creating the ${ENV_NAME} environment"
