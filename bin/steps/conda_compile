@@ -11,7 +11,7 @@ ENV_SPEC_FILE="environment.yml"
 
 if [ ! -d ${CONDA_HOME} ]; then
     puts-step "downloading miniconda"
-    wget ${CONDA_INSTALL_URL} -O ${CONDA_INSTALL_SCRIPT}
+    curl -s ${CONDA_INSTALL_URL} -o ${CONDA_INSTALL_SCRIPT}
 
     puts-step "installing miniconda"
     bash ${CONDA_INSTALL_SCRIPT} -p ${CONDA_HOME} -b | indent
