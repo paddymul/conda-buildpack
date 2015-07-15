@@ -18,7 +18,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 echo $BIN_DIR
 echo $BUILD_DIR
-echo $BUILD_DIR
+echo $CACHE_DIR
 
 WEBCONCURRENCY_PROFILE_PATH="$BUILD_DIR/.profile.d/python.webconcurrency.sh"
 
