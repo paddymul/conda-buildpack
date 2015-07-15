@@ -16,6 +16,10 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
 CACHE_DIR=$2
+echo $BIN_DIR
+echo $BUILD_DIR
+echo $BUILD_DIR
+
 WEBCONCURRENCY_PROFILE_PATH="$BUILD_DIR/.profile.d/python.webconcurrency.sh"
 
 CACHED_DIRS=".heroku"
