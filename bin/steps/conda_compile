@@ -25,9 +25,13 @@ fi
 
 
 if [ -f ${ENV_SPEC_FILE} ]; then
-    puts-step "creating the ${ENV_NAME} environment"
-    ${CONDA} env remove --yes --quiet --name=${ENV_NAME}
-    ${CONDA} env create --name=${ENV_NAME} --file=${ENV_SPEC_FILE}
+    if ${CONDA} env list | grep ${ENV_NAME}; then
+        puts-step "updating the ${ENV_NAME} environment";
+        (${CONDA} env update -n ${ENV_NAME} --file ${ENV_SPEC_FILE}; exit 0);
+    else
+        puts-step "creating the ${ENV_NAME} environment";
+        ${CONDA} env create --name=${ENV_NAME} --file=${ENV_SPEC_FILE};
+    fi
 fi
 
 puts-step "cleaning up miniconda environment"
