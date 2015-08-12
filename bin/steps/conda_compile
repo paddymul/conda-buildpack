@@ -21,6 +21,11 @@ if [ ! -d ${CONDA_HOME} ]; then
     ${CONDA} update conda --yes | indent
 
     puts-step $(${CONDA} --version)" installed"
+else
+    puts-step "updating miniconda to latest version"
+    ${CONDA} update conda --yes | indent
+     
+    puts-step $(${CONDA} --version)" installed"
 fi
 
 
