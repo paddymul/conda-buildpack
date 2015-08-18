@@ -43,5 +43,5 @@ fi
 
 source activate ${ENV_NAME}
 puts-step "cleaning up miniconda environment"
-${CONDA} clean --tarballs --packages --yes > /dev/null
+conda clean --tarballs --packages --yes > /dev/null
 source deactivate
