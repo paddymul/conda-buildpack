@@ -41,7 +41,6 @@ if [ -f ${ENV_SPEC_FILE} ]; then
     fi
 fi
 
-source activate ${ENV_NAME}
 puts-step "cleaning up miniconda environment"
+source activate ${ENV_NAME}
 conda clean --tarballs --packages --yes > /dev/null
-source deactivate
