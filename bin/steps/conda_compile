@@ -18,7 +18,7 @@ if [ ! -d ${CONDA_HOME} ]; then
     rm -f ${CONDA_INSTALL_SCRIPT}
 
     puts-step "updating miniconda to latest version"
-    ${CONDA} update conda --yes | indent
+    ${CONDA} update conda conda-env --yes | indent
 
     puts-step $(${CONDA} --version)" installed"
 else
