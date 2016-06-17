@@ -14,7 +14,7 @@ if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     # Handle NodeJS buildpack for collectstatic
     export PATH=/app/.heroku/node/bin:/app/bin:/app/node_modules/.bin:$PATH
     # Activate our source
-    source activate heroku-env
+    source activate Openfolio
     
     echo "-----> Preparing static assets"
     # Check if collectstatic is configured properly.

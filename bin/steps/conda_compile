@@ -6,7 +6,7 @@ CONDA_HOME="/app/.heroku/miniconda"
 CONDA_BIN_DIR="${CONDA_HOME}/bin"
 CONDA="${CONDA_BIN_DIR}/conda"
 
-ENV_NAME="heroku-env"
+ENV_NAME="Openfolio"
 ENV_SPEC_FILE="environment.yml"
 
 if [ ! -d ${CONDA_HOME} ]; then
