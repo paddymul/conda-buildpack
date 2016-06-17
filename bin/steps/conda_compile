@@ -18,14 +18,16 @@ if [ ! -d ${CONDA_HOME} ]; then
     rm -f ${CONDA_INSTALL_SCRIPT}
 
     puts-step "updating miniconda to latest version"
-    ${CONDA} update conda conda-env --yes | indent
-    ${CONDA} install psutil
+    ${CONDA} install conda=4.0.9 conda-env=2.4.5 --yes | indent
+    # ${CONDA} update conda conda-env --yes | indent
+    # ${CONDA} install psutil
 
     puts-step $(${CONDA} --version)" installed"
 else
     puts-step "updating miniconda to latest version"
-    ${CONDA} update conda conda-env --yes | indent
-    ${CONDA} update psutil
+    ${CONDA} install conda=4.0.9 conda-env=2.4.5 --yes | indent
+    # ${CONDA} update conda conda-env --yes | indent
+    # ${CONDA} update psutil
 
     puts-step $(${CONDA} --version)" installed"
 fi
