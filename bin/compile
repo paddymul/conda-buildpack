@@ -99,11 +99,11 @@ done
 
 # Set context environment variables.
 set-env PATH '$HOME/.heroku/miniconda/bin:$PATH'
-un-set-env PYTHONHOME '/app/.heroku/miniconda/envs/Openfolio/'
+un-set-env PYTHONHOME '/app/.heroku/miniconda/envs/heroku-env/'
 PYTHONPATH='/app/.heroku/miniconda/lib/python2.7/site-packages:$PYTHONPATH'
 if [ -f environment.yml ]; then
-  PYTHONPATH="/app/.heroku/miniconda/envs/Openfolio/lib/python2.7/site-packages:$PYTHONPATH"
-  set-default-env CONDA_DEFAULT_ENV "Openfolio"
+  PYTHONPATH="/app/.heroku/miniconda/envs/heroku-env/lib/python2.7/site-packages:$PYTHONPATH"
+  set-default-env CONDA_DEFAULT_ENV "heroku-env"
 fi
 set-default-env PYTHONPATH $PYTHONPATH
 set-env PYTHONUNBUFFERED true
@@ -111,7 +111,7 @@ set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 
 # Activate the environment
-echo "source activate Openfolio" >> $PROFILE_PATH
+echo "source activate heroku-env" >> $PROFILE_PATH
 
 # Django collectstatic support.
 source $BIN_DIR/steps/collectstatic
