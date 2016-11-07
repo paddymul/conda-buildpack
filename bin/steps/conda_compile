@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONDA_INSTALL_URL="http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh"
+CONDA_INSTALL_URL="https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh"
 CONDA_INSTALL_SCRIPT="miniconda_linux-x86_64.sh"
 CONDA_HOME="/app/.heroku/miniconda"
 CONDA_BIN_DIR="${CONDA_HOME}/bin"
