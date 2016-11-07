@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+SETUP_FILE="setup.py"
+
+if [ -f ${SETUP_FILE} ]; then
+    puts-step "compiling extensions"
+    python setup.py build_ext --inplace
+    puts-step "finished compiling extensions"
+fi
