@@ -46,3 +46,5 @@ fi
 puts-step "cleaning up miniconda environment"
 source activate ${ENV_NAME}
 conda clean --tarballs --packages --yes > /dev/null
+puts-step "removing tar packages"
+rm -rf ${CONDA_HOME}/pkgs/*.tar.*
