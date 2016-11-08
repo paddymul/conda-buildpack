@@ -10,11 +10,11 @@ MANAGE_FILE=${MANAGE_FILE:-fakepath}
 
 if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     set +e
-    
-    # Handle NodeJS buildpack for collectstatic
-    export PATH=/app/.heroku/node/bin:/app/bin:/app/node_modules/.bin:$PATH
+
     # Activate our source
     source activate heroku-env
+    # Handle NodeJS buildpack for collectstatic
+    export PATH=/app/.heroku/node/bin:/app/bin:/app/node_modules/.bin:$PATH
     
     echo "-----> Preparing static assets"
     # Check if collectstatic is configured properly.
