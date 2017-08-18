@@ -45,4 +45,4 @@ fi
 
 puts-step "cleaning up miniconda environment"
 source activate ${ENV_NAME}
-conda clean --all --yes > /dev/null
+conda clean --tarballs --packages --yes > /dev/null
