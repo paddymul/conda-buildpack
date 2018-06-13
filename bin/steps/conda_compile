@@ -32,6 +32,8 @@ if [ ! -d ${CONDA_HOME} ]; then
 fi
 
 puts-step "updating miniconda to latest version"
+export PATH="/app/.heroku/miniconda/bin:$PATH"
+source ${CONDA_BIN_DIR}/activate base
 
 ${CONDA} update conda conda-env psutil --yes | indent
 
