@@ -34,8 +34,6 @@ puts-step "listing /app"
 ls /app/
 puts-step "listing _CONDA_HOME $CONDA_HOME"
 ls $CONDA_HOME
-puts-step "which indent"
-which indent
 
 export PATH="/app/.heroku/miniconda/bin:$PATH"
 source ${CONDA_BIN_DIR}/activate
