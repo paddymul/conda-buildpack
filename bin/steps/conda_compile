@@ -28,18 +28,19 @@ if [ ! -d ${CONDA_HOME} ]; then
 fi
 
 puts-step "updating miniconda to latest version"
-puts-step "listing home dir"
-ls ~/
-puts-step "listing /app"
-ls /app/
-puts-step "listing _CONDA_HOME $CONDA_HOME"
-ls $CONDA_HOME
+# puts-step "listing home dir"
+# ls ~/
+# puts-step "listing /app"
+# ls /app/
+# puts-step "listing _CONDA_HOME $CONDA_HOME"
+# ls $CONDA_HOME
 
 export PATH="/app/.heroku/miniconda/bin:$PATH"
 source ${CONDA_BIN_DIR}/activate base
 
 puts-step "conda update conda"
 ${CONDA} update conda conda-env --yes | indent
+${CONDA} install psutil
 ${CONDA} update psutil
 
 puts-step $(${CONDA} --version)" installed"
