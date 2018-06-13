@@ -34,7 +34,9 @@ puts-step "listing _CONDA_HOME $CONDA_HOME"
 ls $CONDA_HOME
 puts-step "listing _CONDA_BIN_DIR $CONDA_BIN_DIR"
 ls $CONDA_BIN_DIR
-. ${CONDA_BIN_DIR}/activate
+
+source ${CONDA_BIN_DIR}/activate
+
 ${CONDA} update conda conda-env --yes | indent
 ${CONDA} update psutil
 
