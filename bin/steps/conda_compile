@@ -23,7 +23,7 @@ if [ ! -d ${CONDA_HOME} ]; then
     # ${CONDA} install psutil
 
     # puts-step $(${CONDA} --version)" installed"
-
+fi
 
 puts-step "updating miniconda to latest version"
 puts-step "listing home dir"
