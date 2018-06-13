@@ -10,6 +10,8 @@ ENV_NAME="heroku-env"
 ENV_SPEC_FILE="environment.yml"
 
 unset PYTHONPATH
+export PATH=/usr/local/bin:/usr/bin:/bin
+
 if [ ! -d ${CONDA_HOME} ]; then
     puts-step "downloading miniconda"
     curl -s ${CONDA_INSTALL_URL} -o ${CONDA_INSTALL_SCRIPT}
@@ -32,11 +34,13 @@ puts-step "listing /app"
 ls /app/
 puts-step "listing _CONDA_HOME $CONDA_HOME"
 ls $CONDA_HOME
-puts-step "listing _CONDA_BIN_DIR $CONDA_BIN_DIR"
-ls $CONDA_BIN_DIR
+puts-step "which indent"
+which indent
 
+export PATH="/app/.heroku/miniconda/bin:$PATH"
 source ${CONDA_BIN_DIR}/activate
 
+puts-step "conda update conda"
 ${CONDA} update conda conda-env --yes | indent
 ${CONDA} update psutil
 
