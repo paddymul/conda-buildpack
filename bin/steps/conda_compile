@@ -9,6 +9,7 @@ CONDA="${CONDA_BIN_DIR}/conda"
 ENV_NAME="heroku-env"
 ENV_SPEC_FILE="environment.yml"
 
+unset PYTHONPATH
 if [ ! -d ${CONDA_HOME} ]; then
     puts-step "downloading miniconda"
     curl -s ${CONDA_INSTALL_URL} -o ${CONDA_INSTALL_SCRIPT}
@@ -17,26 +18,28 @@ if [ ! -d ${CONDA_HOME} ]; then
     bash ${CONDA_INSTALL_SCRIPT} -p ${CONDA_HOME} -b | indent
     rm -f ${CONDA_INSTALL_SCRIPT}
 
-    puts-step "updating miniconda to latest version"
-    ${CONDA} update conda conda-env --yes | indent
-    ${CONDA} install psutil
+    # puts-step "updating miniconda to latest version"
+    # ${CONDA} update conda conda-env --yes | indent
+    # ${CONDA} install psutil
 
-    puts-step $(${CONDA} --version)" installed"
-else
-    puts-step "updating miniconda to latest version"
-    puts-step "listing home dir"
-    ls ~/
-    puts-step "listing /app"
-    ls /app/
-    puts-step "listing _CONDA_HOME $CONDA_HOME"
-    ls $CONDA_HOME
-    puts-step "listing _CONDA_BIN_DIR $CONDA_BIN_DIR"
-    ls $CONDA_BIN_DIR
-    ${CONDA} update conda conda-env --yes | indent
-    ${CONDA} update psutil
+    # puts-step $(${CONDA} --version)" installed"
 
-    puts-step $(${CONDA} --version)" installed"
-fi
+
+puts-step "updating miniconda to latest version"
+puts-step "listing home dir"
+ls ~/
+puts-step "listing /app"
+ls /app/
+puts-step "listing _CONDA_HOME $CONDA_HOME"
+ls $CONDA_HOME
+puts-step "listing _CONDA_BIN_DIR $CONDA_BIN_DIR"
+ls $CONDA_BIN_DIR
+. ${CONDA_BIN_DIR}/activate
+${CONDA} update conda conda-env --yes | indent
+${CONDA} update psutil
+
+puts-step $(${CONDA} --version)" installed"
+
 
 
 if [ -f ${ENV_SPEC_FILE} ]; then
