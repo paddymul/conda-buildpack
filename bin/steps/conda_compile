@@ -36,7 +36,7 @@ puts-step "listing _CONDA_HOME $CONDA_HOME"
 ls $CONDA_HOME
 
 export PATH="/app/.heroku/miniconda/bin:$PATH"
-source ${CONDA_BIN_DIR}/activate
+source ${CONDA_BIN_DIR}/activate base
 
 puts-step "conda update conda"
 ${CONDA} update conda conda-env --yes | indent
