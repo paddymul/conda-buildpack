@@ -7,6 +7,7 @@ CONDA_BIN_DIR="${CONDA_HOME}/bin"
 CONDA="${CONDA_BIN_DIR}/conda"
 
 ENV_NAME="heroku-env"
+#ENV_NAME="base"
 ENV_SPEC_FILE="environment.yml"
 
 unset PYTHONPATH
@@ -19,31 +20,23 @@ if [ ! -d ${CONDA_HOME} ]; then
     puts-step "installing miniconda"
     bash ${CONDA_INSTALL_SCRIPT} -p ${CONDA_HOME} -b | indent
     rm -f ${CONDA_INSTALL_SCRIPT}
+    export PATH="/app/.heroku/miniconda/bin:$PATH"
+    source ${CONDA_BIN_DIR}/activate base
 
+    ${CONDA} install psutil
     # puts-step "updating miniconda to latest version"
     # ${CONDA} update conda conda-env --yes | indent
-    # ${CONDA} install psutil
+    
 
     # puts-step $(${CONDA} --version)" installed"
 fi
 
 puts-step "updating miniconda to latest version"
-# puts-step "listing home dir"
-# ls ~/
-# puts-step "listing /app"
-# ls /app/
-# puts-step "listing _CONDA_HOME $CONDA_HOME"
-# ls $CONDA_HOME
 
-export PATH="/app/.heroku/miniconda/bin:$PATH"
-source ${CONDA_BIN_DIR}/activate base
+${CONDA} update conda conda-env psutil --yes | indent
 
-puts-step "conda update conda"
-${CONDA} update conda conda-env --yes | indent
-${CONDA} install psutil
-${CONDA} update psutil
+puts-step "$(${CONDA} --version)" "installed"
 
-puts-step $(${CONDA} --version)" installed"
 
 
 
