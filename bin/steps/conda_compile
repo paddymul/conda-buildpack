@@ -24,6 +24,7 @@ if [ ! -d ${CONDA_HOME} ]; then
     puts-step $(${CONDA} --version)" installed"
 else
     puts-step "updating miniconda to latest version"
+    ls ~/
     ${CONDA} update conda conda-env --yes | indent
     ${CONDA} update psutil
 
